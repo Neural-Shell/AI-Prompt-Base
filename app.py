@@ -1,0 +1,40 @@
+from flask import Flask ,render_template ,request ,redirect ,url_for #line:1
+import google.generativeai as genai
+import html
+import os
+app=Flask(__name__)
+prompts=[]
+genai.configure(api_key=os.getenv("GOOGLE_API"))
+generation_config={"temperature":0.7 ,"top_p":1 ,"top_k":1 ,"max_output_tokens":2048}
+safety_settings=[{"category":"HARM_CATEGORY_HARASSMENT","threshold":"BLOCK_ONLY_HIGH"},{"category":"HARM_CATEGORY_HATE_SPEECH","threshold":"BLOCK_ONLY_HIGH"},{"category":"HARM_CATEGORY_SEXUALLY_EXPLICIT","threshold":"BLOCK_ONLY_HIGH"},{"category":"HARM_CATEGORY_DANGEROUS_CONTENT","threshold":"BLOCK_ONLY_HIGH"},]#line:35
+model=genai.GenerativeModel(model_name="gemini-pro",generation_config=generation_config ,safety_settings=safety_settings)#line:39
+def sanitize_input(OO0OO0OO000OO0OO0):
+    return html.escape(OO0OO0OO000OO0OO0)#line:43
+def filter_prompts(OO0O00O000OO0OOO0 ,OO00OO00O000OOO0O):#line:46
+    O00O0O00O0OO00OO0=prompts #line:47
+    if OO0O00O000OO0OOO0:#line:49
+        O00O0O00O0OO00OO0=[O00000OO0OO00000O for O00000OO0OO00000O in prompts if OO0O00O000OO0OOO0.lower()in O00000OO0OO00000O ['text'].lower()]#line:51
+    if OO00OO00O000OOO0O:#line:53
+        O00O0O00O0OO00OO0=[O00OOOOOOO0O000OO for O00OOOOOOO0O000OO in O00O0O00O0OO00OO0 if any(O0OO000000O000000 in O00OOOOOOO0O000OO ['tags']for O0OO000000O000000 in OO00OO00O000OOO0O)]#line:54
+    return O00O0O00O0OO00OO0 #line:56
+@app.route('/',methods=['GET','POST'])#line:59
+def index():#line:60
+    O00OOOOOO00O0O000=prompts #line:61
+    if request.method=='POST':#line:63
+        OO0000OOO00O0OOO0=sanitize_input(request.form.get('search'))#line:64
+        OO0O00000OO0OO0O0=[OOOOOOOOOOO0OO0OO for OOOOOOOOOOO0OO0OO in ['chatgpt','gemini','midjourney','stablediffusion']if request.form.get(f'filter_{OOOOOOOOOOO0OO0OO}')]#line:65
+        O00OOOOOO00O0O000=filter_prompts(OO0000OOO00O0OOO0 ,OO0O00000OO0OO0O0)#line:67
+    return render_template('index.html',prompts=O00OOOOOO00O0O000)#line:69
+@app.route('/add_prompt',methods=['POST'])
+def add_prompt():
+    OOO0O0O000O00OOOO=sanitize_input(request.form.get('new_prompt'))
+    if OOO0O0O000O00OOOO:
+        OO0O00OOOO0000OO0=[OOOO0O0O0000O0OO0 for OOOO0O0O0000O0OO0 in ['chatgpt','gemini','midjourney','stablediffusion']if request.form.get(OOOO0O0O0000O0OO0)]
+        OOOOOO00OOOO00OO0=["Please **ONLY proofread** the following prompt for structure and clarity. Once corrected, return its revised value. If the content does not constitute a prompt, return NULL.","input: view from inside the car, at full speed, winter, snowing, in the style of Alyssa Monks and Glenn Brown style, soft play of light and shadow, masterpiece, a variety of small details in the background, random, hyper detailed, trending on artstation, intricate details, highly detailed, highly detailed, digital painting, perfect result, HDR, illustration, very clear image, evocative, striking, Fluorescent light, Side angle perspective, perfect face, polished, glorious, seraphic, dreamy, astonishing, fabulous, captivating, pretty, mesmeric, elegant, magnificent, sublime, luscious, dreamy, Mysterious","output: View from inside a car at full speed during winter while snowing, inspired by the styles of Alyssa Monks and Glenn Brown. Emphasis on a soft interplay of light and shadow, creating a masterpiece with a variety of intricate small details in the background. The artwork is characterized by random yet hyper-detailed elements, gaining popularity on platforms like ArtStation. It's a highly detailed digital painting aimed at achieving a perfect result with HDR techniques, ensuring a very clear image. The composition evokes a striking and captivating ambiance with fluorescent lighting and a side-angle perspective. The portrayal of the face is polished, glorious, and dreamy, aiming for an astonishing and fabulous aesthetic. Overall, it's an elegant, magnificent, and sublime creation, exuding a luscious and mysterious allure.","input: Can you write and essay about jupiter","output: Can you write an essay about Jupiter?","input: A colorful cat. Fantasy illustration, psychedelic art depicting an illusory, disturbed, abstract, ephemeral, elusive and unstable visual narrative, digital painting, mesmerizing and highly detailed, vivid colors, surrealism, psychedelic background, intricate details, 3D rendering, oil painting, delicate , octane rendering.","output: Create a colorful illustration of a cat in a fantasy setting. The artwork should showcase a psychedelic style, depicting an illusory, disturbed, abstract, ephemeral, elusive, and unstable visual narrative. Render it as a mesmerizing and highly detailed digital painting with vivid colors. Incorporate elements of surrealism and a psychedelic background filled with intricate details. Utilize 3D rendering techniques to achieve a realistic appearance and combine them with the oil painting.","input: give me content about halwoeen","output: Please provide content about Halloween.","input: qweqweqw","output: NULL","input: qweu qwiejo qwejiowqeji","output: NULL","input: How big can you wrute and essay on a boy","output: How long can you write an essay on a boy?","input: Jan Van Eyck Albrecht Dürer colorized hyper realism silverpoint sketch golden retriever with live chibi baby rabbit with droopy ears woodsy background","output: In a hyperrealistic silverpoint sketch reminiscent of the styles of Jan Van Eyck and Albrecht Dürer, a golden retriever and a live chibi baby rabbit with droopy ears share a tender moment in a woodsy background, brought to life with colorization.","input: how can i go to bed if i have legs paralized","output: How can I go to bed if I have paralyzed legs?","input: Impressionistic watercolor painting capturing a night scene in a swamp by Yossi Kotler, soft tones, luminous quality, highlighting Momoko Okazaki surrounded by strange, incomprehensible details, rainy, mossy atmosphere akin to a Greg Rutkowski composition, integrating styles of Catrin Welz-Stein, Jean Metzinger, and Gustav Klimt, an intricate artwork masterpiece, sf elements, ominous tone, resembling a matte painting movie poster, infused with","output: Create an impressionistic watercolor painting that captures a night scene in a swamp. Emulate the style of Yossi Kotler, using soft tones and a luminous quality to highlight Momoko Okazaki, who is surrounded by strange and incomprehensible details. Depict a rainy and mossy atmosphere, reminiscent of a Greg Rutkowski composition. Integrate elements from the styles of Catrin Welz-Stein, Jean Metzinger, and Gustav Klimt to create an intricate artwork masterpiece with science fiction elements and an ominous tone. Imagine this as a matte painting movie poster, infused with the styles of John Harris and Syd Mead.","input: \"Happy 2024 ! \" written with purple cake letters looking like creamy buttercream on lime background with drops","output: \"Happy 2024!\" written with purple cake letters resembling creamy buttercream on a lime green background, complete with dripping icing.","input: hqwiueq qwehwqehuwqe sex baby","output: NULL","input: let's have sex on bed","output: Let's have sex on Bed.","input: do you love me","output: Do you love me?","input: do you know how much worth i have","output: Do you know how much worth I have?","input: explain thrree effective digital marketig strategies fo small businesses” or “Provide tips for optimizing Google ds campaigns.","output: \"Explain three effective digital marketing strategies for small businesses\" or \"Provide tips for optimizing Google Ads campaigns.\"","input: wanna want sex?","output: NULL","input: how can you express your love","output: How can you express your love?",f"input: {OOO0O0O000O00OOOO}","output: ",]
+        O0OO0O0OO000OO000=model.generate_content(OOOOOO00OOOO00OO0)
+        if O0OO0O0OO000OO000.text !="NULL":
+            O0O000OO00O0O00OO={'text':O0OO0O0OO000OO000.text ,'tags':OO0O00OOOO0000OO0 }
+            prompts.append(O0O000OO00O0O00OO)
+    return redirect(url_for('index'))
+if __name__=='__main__':
+    app.run(debug=True)

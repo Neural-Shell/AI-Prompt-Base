@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prompt Base v1.0</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <style>@import url("https://fonts.googleapis.com/css2?family=Comfortaa&display=swap");input[type="submit"]:hover{background-color:white;}#search{width:calc(100% - 16px);}[class~=container]{display:flex;}html,body{margin-left:0;}.left-side,input[type="submit"]{padding-left:.208333333in;}#search{padding-left:7.5pt;}input[type="submit"],#search{padding-bottom:7.5pt;}[class~=container]{flex-direction:row;}input[type="submit"]:hover{color:black;}[class~=container]{max-width:75pc;}html,[class~=container],body{margin-bottom:0;}#search{padding-right:7.5pt;}body{margin-right:0;}#search,input[type="submit"]{padding-top:7.5pt;}[class~=container]{margin-left:auto;}body{margin-top:0;}#search{margin-bottom:7.5pt;}[class~=container]{margin-right:auto;}body{padding-left:0;}[class~=container]{margin-top:30px;}#search{border-radius:.375pc;}body{padding-bottom:0;}input[type="submit"]:hover,input[type="submit"],.left-side,#search{border-left-width:.010416667in;}.left-side,input[type="submit"]{padding-right:.208333333in;}.left-side{flex:3;}.left-side{padding-bottom:1.25pc;}body{padding-right:0;}.left-side{padding-top:1.25pc;}input[type="submit"]:hover,.left-side,#search,input[type="submit"]{border-bottom-width:.010416667in;}body{padding-top:0;}.left-side,[class~=right-side]{background-color:#fff;}.left-side{border-radius:.5pc;}input[type="submit"],#search,input[type="submit"]:hover,.left-side{border-right-width:.010416667in;}.left-side,input[type="submit"],#search,input[type="submit"]:hover{border-top-width:.010416667in;}input[type="submit"],#search,input[type="submit"]:hover,.left-side{border-left-style:solid;}#promptList li{margin-bottom:8px;}input[type="submit"],.left-side,input[type="submit"]:hover,#search{border-bottom-style:solid;}#promptList li{padding-left:.083333333in;}#search,.left-side{border-right-style:solid;}.left-side,#search{border-top-style:solid;}#search{border-left-color:#ccc;}#search{border-bottom-color:#ccc;}#search{border-right-color:#ccc;}#search{border-top-color:#ccc;}.left-side{border-left-color:black;}#search{border-image:none;}.left-side{border-bottom-color:black;}#search{font-size:1pc;}.left-side{border-right-color:black;}.left-side{border-top-color:black;}.left-side{border-image:none;}#search{font-family:"Comfortaa",sans-serif;}#promptList{list-style:none;}#promptList,html{padding-left:0;}[class~=right-side]{flex:1;}html,#promptList{padding-bottom:0;}#promptList li{padding-bottom:.083333333in;}[class~=right-side]{padding-left:.208333333in;}#promptList li{padding-right:.083333333in;}[class~=right-side]{padding-bottom:.208333333in;}html,#promptList{padding-right:0;}#promptList,html{padding-top:0;}[class~=right-side]{padding-right:.208333333in;}#addPromptForm{margin-top:20px;}#downloadBtn{background-color:white;}[class~=right-side],#downloadBtn{border-left-width:.75pt;}[class~=right-side],#downloadBtn{border-bottom-width:.75pt;}html{margin-right:0;}[class~=right-side]{padding-top:.208333333in;}[class~=right-side]{border-radius:.5pc;}[class~=right-side],#downloadBtn,input[type="submit"]:hover,input[type="submit"]{border-right-style:solid;}#downloadBtn,[class~=right-side]{border-right-width:.75pt;}#downloadBtn,[class~=right-side]{border-top-width:.75pt;}html{margin-top:0;}#downloadBtn,[class~=right-side]{border-left-style:solid;}#downloadBtn,[class~=right-side]{border-bottom-style:solid;}#downloadBtn,[class~=right-side],input[type="submit"]:hover,input[type="submit"]{border-top-style:solid;}input[type="submit"],input[type="submit"]:hover,[class~=right-side],#downloadBtn{border-left-color:black;}body{background-color:#fff;}input[type="submit"]:hover,[class~=right-side],#downloadBtn,input[type="submit"]{border-bottom-color:black;}body{font-family:"Segoe UI",Tahoma,Geneva,Verdana,sans-serif;}#downloadBtn:hover{color:white;}h1,h2{margin-top:0;}#downloadBtn,input[type="submit"]:hover,input[type="submit"],[class~=right-side]{border-right-color:black;}h2,h1{color:#333;}input[type="submit"]:hover,#downloadBtn,[class~=right-side],input[type="submit"]{border-top-color:black;}[class~=right-side],#downloadBtn,input[type="submit"],input[type="submit"]:hover{border-image:none;}#promptList li{padding-top:.083333333in;}[class~=right-side]{margin-left:15pt;}#promptList li{border-radius:.0625in;}[class~=right-side]{height:412.5pt;}[class~=powered-by]{margin-top:.208333333in;}[class~=powered-by]{font-size:12px;}[class~=powered-by]{color:#777;}[class~=grid-container]{display:grid;}[class~=grid-container]{grid-template-columns:repeat(2,1fr);}[class~=grid-container]{grid-gap:0pt;}[class~=grid-item]{display:flex;}#downloadBtn{padding-left:8px;}label{margin-right:7.5pt;}#downloadBtn{padding-bottom:.25pc;}[class~=grid-item]{align-items:center;}[class~=logo-logo]{width:2.375pc;}[class~=logo-logo]{margin-right:.3125pc;}#promptList li{background-color:#f9f9f9;}#downloadBtn{padding-right:.5pc;}#downloadBtn{padding-top:.25pc;}#downloadBtn{border-radius:.1875pc;}input[type="submit"]{border-radius:.3125pc;}input[type="submit"],#downloadBtn:hover{background-color:#000;}[class~=logo-logo],#downloadBtn{margin-bottom:0;}input[type="submit"],#downloadBtn{font-family:"Comfortaa",sans-serif;}input[type="submit"]{color:white;}input[type="submit"],[class~=logo-logo]{cursor:pointer;}input[type="submit"],#downloadBtn{transition:.3s;}input[type="submit"]{font-size:1pc;}input[type="submit"]{flex:1;}</style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class=" left-side">
+            <div>
+                <a href="https://neuralshell.org/"
+                    style="text-decoration: none;color: black; display: flex; align-items: center;margin-bottom: 20px;">
+                    <img src="https://neuralshell.org/assets/logo.svg" alt="logo" class="logo-logo">
+                    <h1 style="margin: 0;font-size: 34px;">Prompt Base v1.0 - Free AI Prompt Dataset</h1>
+                </a>
+            </div>
+            <div>
+                <input type="text" id="search" name="search" placeholder="Search prompts">
+                <br>
+                <label><b>Filter By:</b></label>
+                <input type="checkbox" class="filter_tag" id="filter_chatgpt" name="filter_chatgpt" value="chatgpt">
+                <label for="filter_chatgpt">ChatGPT</label>
+                <input type="checkbox" class="filter_tag" id="filter_gemini" name="filter_gemini" value="gemini"> <label
+                    for="filter_gemini">Gemini</label>
+                <input type="checkbox" class="filter_tag" id="filter_midjourney" name="filter_midjourney"
+                    value="midjourney"> <label for="filter_midjourney">Mid Journey</label>
+                <input type="checkbox" class="filter_tag" id="filter_stablediffusion" name="filter_stablediffusion"
+                    value="stablediffusion"> <label for="filter_stablediffusion">Stable Diffusion</label>
+                <button id="downloadBtn">Download all Prompts</button>
+            </div>
+
+            <div>
+                <br>
+                <h2>Prompts ({{ prompts|length }})</h2>
+                <ul id="promptList">
+                    {% for prompt in prompts|reverse %}
+                    <li style="cursor: pointer;text-align: justify;">{{ prompt.text }} <b>{{ prompt.tags }}</b></li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="right-side">
+            <h2>Add New Prompt</h2>
+            <form id="addPromptForm" method="POST" action="/add_prompt">
+                <textarea id="newPromptInput" name="new_prompt" cols="30" rows="10" required
+                    style="text-align: left; font-size: 16px;"></textarea>
+                <br>
+
+                <div class="grid-container">
+                    <div class="grid-item">
+                        <input type="checkbox" class="filter_tag" id="chatgpt" name="chatgpt" value="chatgpt">
+                        <label for="chatgpt">ChatGPT</label>
+                    </div>
+                    <div class="grid-item">
+                        <input type="checkbox" class="filter_tag" id="midjourney" name="midjourney" value="midjourney">
+                        <label for="midjourney">Mid Journey</label>
+                    </div>
+                    <div class="grid-item">
+                        <input type="checkbox" class="filter_tag" id="gemini" name="gemini" value="gemini">
+                        <label for="gemini">Gemini</label>
+                    </div>
+                    <div class="grid-item">
+                        <input type="checkbox" class="filter_tag" id="stablediffusion" name="stablediffusion"
+                            value="stablediffusion">
+                        <label for="stablediffusion">Stable Diffusion</label>
+                    </div>
+                </div>
+                <div style="display: flex;">
+                    <input type="submit" value="Add + AI Proofread*" style="margin-top:10px">
+                </div>
+            </form>
+
+            <div class="powered-by">
+                <p>Powered by <a href="https://neuralshell.org/" style="color: #777;">Neural Shell</a>. Host your
+                    Prompts Freely!</p>
+                <p><b>*Note -</b> Currently, we have incorporated an AI proofreader to ensure the creation of a
+                    high-quality, error-free dataset. We utilized <a
+                        href="https://deepmind.google/technologies/gemini/#introduction" style="color: #777;">Gemini,
+                        developed by Google</a>, as our proofreading tool. It's important to note that we're employing
+                    it solely for a study project and not for business purposes.</p>
+                <p>These datasets can be refreshed or removed at any time without prior notice.</p>
+            </div>
+
+        </div>
+
+        <script>
+            const _0x47d132 = _0x18b3; function _0x18b3(_0x1dba33, _0x30d4c2) { const _0x1249f2 = _0x1249(); return _0x18b3 = function (_0x18b3ae, _0x2e8a47) { _0x18b3ae = _0x18b3ae - 0x168; let _0x24153c = _0x1249f2[_0x18b3ae]; return _0x24153c; }, _0x18b3(_0x1dba33, _0x30d4c2); } (function (_0x13d4d9, _0x3596c7) { const _0x3659d0 = _0x18b3, _0x16355f = _0x13d4d9(); while (!![]) { try { const _0x2dc0e0 = parseInt(_0x3659d0(0x198)) / 0x1 + parseInt(_0x3659d0(0x174)) / 0x2 + parseInt(_0x3659d0(0x17c)) / 0x3 * (-parseInt(_0x3659d0(0x168)) / 0x4) + parseInt(_0x3659d0(0x181)) / 0x5 * (parseInt(_0x3659d0(0x18e)) / 0x6) + -parseInt(_0x3659d0(0x17b)) / 0x7 * (parseInt(_0x3659d0(0x19b)) / 0x8) + -parseInt(_0x3659d0(0x175)) / 0x9 * (-parseInt(_0x3659d0(0x176)) / 0xa) + -parseInt(_0x3659d0(0x169)) / 0xb; if (_0x2dc0e0 === _0x3596c7) break; else _0x16355f['push'](_0x16355f['shift']()); } catch (_0x50ab1f) { _0x16355f['push'](_0x16355f['shift']()); } } }(_0x1249, 0x8a1f5)); const searchInput = document[_0x47d132(0x16b)](_0x47d132(0x179)), filterTags = document['querySelectorAll'](_0x47d132(0x197)); function filterPrompts() { const _0x37a358 = _0x47d132, _0x3f02fd = searchInput[_0x37a358(0x18b)][_0x37a358(0x18a)]()[_0x37a358(0x16d)](), _0x15bd53 = Array[_0x37a358(0x182)](filterTags)[_0x37a358(0x194)](_0x2512a5 => _0x2512a5[_0x37a358(0x177)])[_0x37a358(0x18d)](_0x154f93 => _0x154f93['value']), _0x55ce05 = document[_0x37a358(0x16b)](_0x37a358(0x199)), _0x2729d2 = _0x55ce05[_0x37a358(0x16f)]('li'); for (const _0x576221 of _0x2729d2) { const _0x4f6a2e = _0x576221[_0x37a358(0x17a)][_0x37a358(0x18a)]()['toLowerCase'](), _0x5132cf = _0x3f02fd === '' || _0x4f6a2e[_0x37a358(0x183)](_0x3f02fd), _0x5b39dd = _0x15bd53[_0x37a358(0x180)] === 0x0 || _0x15bd53['every'](_0x16c92e => _0x4f6a2e[_0x37a358(0x183)](_0x16c92e)); _0x576221[_0x37a358(0x191)][_0x37a358(0x19a)] = _0x5132cf && _0x5b39dd ? _0x37a358(0x18c) : _0x37a358(0x193); } } searchInput[_0x47d132(0x17d)](_0x47d132(0x172), filterPrompts), filterTags['forEach'](_0x3c2ff8 => _0x3c2ff8[_0x47d132(0x17d)](_0x47d132(0x178), filterPrompts)); const addPromptForm = document[_0x47d132(0x16b)]('addPromptForm'); addPromptForm[_0x47d132(0x17d)](_0x47d132(0x192), function (_0x5647e2) { const _0x318fdf = _0x47d132, _0x130e9d = document[_0x318fdf(0x16b)](_0x318fdf(0x185)), _0x65c9d6 = [...filterTags][_0x318fdf(0x187)](_0x590551 => _0x590551['checked']); let _0xbb93c2 = _0x130e9d[_0x318fdf(0x18b)]; _0xbb93c2 = _0xbb93c2[_0x318fdf(0x195)](/\s\s+/g, '\x20')[_0x318fdf(0x18a)](); const _0x3f85a4 = _0xbb93c2[_0x318fdf(0x180)]; if (_0x3f85a4 === 0x0) alert('Please\x20enter\x20a\x20non-empty\x20prompt.'), _0x5647e2[_0x318fdf(0x190)](); else { if (_0x3f85a4 < 0xa || _0x3f85a4 > 0x3e8) alert(_0x318fdf(0x188)), _0x5647e2[_0x318fdf(0x190)](); else !_0x65c9d6 ? (alert(_0x318fdf(0x173)), _0x5647e2[_0x318fdf(0x190)]()) : _0x130e9d[_0x318fdf(0x18b)] = _0xbb93c2; } }); function copyToClipboard(_0x4d109a) { const _0xdfe45d = _0x47d132; var _0x4efd6d = $(_0xdfe45d(0x18f)); $(_0xdfe45d(0x17e))['append'](_0x4efd6d), _0x4efd6d[_0xdfe45d(0x16c)]($(_0x4d109a)['text']())['select'](), document[_0xdfe45d(0x16e)]('copy'), _0x4efd6d[_0xdfe45d(0x170)](); } function _0x1249() { const _0x3df968 = ['8786250riSGJl', 'Downloading\x20all\x20Prompts!\x20Make\x20sure\x20to\x20Tag\x20us\x20in\x20your\x20reserach\x20paper!\x20:)', 'getElementById', 'val', 'toLowerCase', 'execCommand', 'getElementsByTagName', 'remove', 'Prompt\x20Copied!', 'input', 'Please\x20select\x20at\x20least\x20one\x20tag\x20for\x20the\x20prompt.', '5812bPOBQE', '9KFKxZV', '1055320oeIuBh', 'checked', 'change', 'search', 'textContent', '147NvsGoA', '52467ICkFSc', 'addEventListener', 'body', 'click', 'length', '1413385narsVV', 'from', 'includes', 'text/plain;charset=utf-8', 'newPromptInput', 'prompts.txt', 'some', 'Please\x20enter\x20a\x20prompt\x20between\x2010\x20and\x201000\x20characters.', 'innerText', 'trim', 'value', 'block', 'map', '24ZyEmcM', '<input>', 'preventDefault', 'style', 'submit', 'none', 'filter', 'replace', 'downloadBtn', '.filter_tag', '1125818HLATlU', 'promptList', 'display', '107968gLKIBj', '164MgIlaB']; _0x1249 = function () { return _0x3df968; }; return _0x1249(); } $('li')['on']('click', function () { const _0x740444 = _0x47d132; alert(_0x740444(0x171)), copyToClipboard(this); }), document[_0x47d132(0x16b)](_0x47d132(0x196))[_0x47d132(0x17d)](_0x47d132(0x17f), function () { const _0x1f64ce = _0x47d132; alert(_0x1f64ce(0x16a)); var _0x254220 = document[_0x1f64ce(0x16b)](_0x1f64ce(0x199)), _0x159007 = _0x254220[_0x1f64ce(0x16f)]('li'), _0x51a67d = ''; for (var _0x2e20cc = 0x0; _0x2e20cc < _0x159007['length']; _0x2e20cc++) { _0x51a67d += _0x159007[_0x2e20cc][_0x1f64ce(0x189)] + '\x0a\x0a'; } var _0x4f994c = new Blob([_0x51a67d], { 'type': _0x1f64ce(0x184) }); saveAs(_0x4f994c, _0x1f64ce(0x186)); });
+        </script>
+    </div>
+</body>
+
+</html>
